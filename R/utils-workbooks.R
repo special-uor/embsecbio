@@ -70,6 +70,17 @@ inspect <- function(x, tb = class(x)[1], coerce = FALSE, default = -999999) {
   invisible(x)
 }
 
+#' @keywords internal
+is_missing <- function(x) {
+  missing_values <- c(NA,
+                      "-777777",
+                      "-999999",
+                      "not applicable",
+                      "not known",
+                      "not_recorded")
+  purrr::map_lgl(x, ~.x %in% missing_values)
+}
+
 #' List workbook sheets
 #'
 #' @return Vector with sheet names.
@@ -99,6 +110,41 @@ map_string <- function(str, ref = embsecbio()$tables) {
   if (is.na(idx))
     return(str)
   return(ref[idx])
+}
+
+#' Replace missing data
+#'
+#' @details
+#' \describe{
+#'  \item{`not applicable` -> `NULL`}{for fields where we would not expect
+#'  an answer (e.g. water depth for terrestrial sites, lab number/material
+#'  dated for pollen correlations).}
+#'  \item{`not recorded` -> `-999999`}{for fields where we/they have checked
+#'  and there is no information (information not collected, contributor has
+#'  lost data).}
+#'  \item{`not known` -> `-777777`}{for fields where we don't know what the
+#'  answer is but there could be one and we should check at some stage}
+#' }
+#'
+#' @param data Input data (column)
+#'
+#' @return Input data with the missing filters replaced by their corresponding
+#' codes.
+#'
+#' @keywords internal
+replace_missing <- function(data) {
+  lower <- tolower(data)
+  # `not recorded` -> `-999999`
+  idx <- lower == "not recorded"
+  if (sum(idx, na.rm = TRUE) > 0) data[idx] <- -999999
+
+  # `not applicable` -> `NULL`
+  idx <- lower == "not applicable"
+  if (sum(idx, na.rm = TRUE) > 0 ) data[idx] <- NA
+  # `not known` -> `-777777`
+  idx <- lower == "not known"
+  if (sum(idx, na.rm = TRUE) > 0) data[idx] <- -777777
+  data
 }
 
 #' Update column names
