@@ -31,13 +31,13 @@ embsecbio <- function() {
 
   basin_size <- tibble::tribble(
     ~"names", ~"types",
-    "ID_BASIN_SIZE", "integer",
+    "ID_BASIN_SIZE", "character",
     "basin_desc", "character"
   )
 
   catch_size <- tibble::tribble(
     ~"names", ~"types",
-    "ID_CATCH_SIZE", "integer",
+    "ID_CATCH_SIZE", "character",
     "catch_size", "character"
   )
 
@@ -191,7 +191,7 @@ read_workbook <- function(workbook,
   # Extract the names of the sheets in the workbook
   workbook_sheets <- readxl::excel_sheets(workbook)
   # Find matching sheets
-  idx <- as.numeric(purrr::map(sheets, agrep, x =  workbook_sheets))
+  idx <- as.numeric(purrr::map(sheets, agrep, x =  workbook_sheets, max.distance = 1))
   if (sum(!is.na(idx)) != length(sheets)) {
     stop("The given workbook, `", basename(workbook), "`, it is missing the ",
          "following sheet(s): \n",
@@ -211,7 +211,7 @@ read_workbook <- function(workbook,
       )
 
       tmp <- tmp[rowSums(is.na(tmp)) != ncol(tmp), ] # Find rows with all NAs
-      # Change case of column names and match them the ones in the RPD
+      # Change case of column names and match them the ones in the EMBSeCBIO
       colnames(tmp) <- update_names(tolower(col_names), tolower(sheets[i]))
       tmp <- tmp[, !is.na(colnames(tmp))] # Remove columns without names
       if (nrow(tmp) > 0)
