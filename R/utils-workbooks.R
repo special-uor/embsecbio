@@ -16,7 +16,7 @@ inspect <- function(x, tb = class(x)[1], coerce = FALSE, default = -999999) {
   ctypes <- purrr::map_chr(x, typeof)
 
   # Obtain metadata
-  meta <- rpd()[[tb]]
+  meta <- embsecbio()[[tb]]
   if (is.null(meta))
     stop("Invalid table name, ", tb, "!", call. = FALSE)
   # Ignore columns with ID_* prefix
@@ -95,17 +95,18 @@ list_sheets <- function() {
 }
 
 #' Map string to reference list
-#'
+#' @importFrom magrittr `%>%`
 #' @param str String to match.
 #' @param ref Vector with reference strings.
 #'
 #' @return Matching string (if any).
 #' @keywords internal
 map_string <- function(str, ref = embsecbio()$tables) {
-  str <- gsub(" ", "_",
-              trimws(gsub("metadata",
-                          "",
-                          tolower(str))))
+  str <- tolower(str) %>%
+    gsub("metadata", "", .) %>%
+    # gsub("data", "", .) %>%
+    trimws(.) %>%
+    gsub(" ", "_", .)
   idx <- pmatch(str, ref)
   if (is.na(idx))
     return(str)
@@ -184,8 +185,10 @@ update_names <- function(vars, sheet = NA) {
       "ID_DATE_TYPE"
     } else if (x == "average_depth") { # date_info table
       "avg_depth"
-    } else if (x == "lab_num") { # date_info table
-      "lab_number"
+    } else if (x == "lab_number") { # date_info table
+      "lab_num"
+    } else if (x == "comments") { # date_info table
+      "date_comments"
     } else {
       x
     }
