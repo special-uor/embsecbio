@@ -1,5 +1,5 @@
 Package: EMBSEcBIO
-Title: Eastern Mediterranean-Black Sea-Caspian-Corridor Region and biome reconstructions
+Title: Eastern Mediterranean-Black Sea-Caspian-Corridor Region
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "First",
@@ -14,3 +14,6 @@ Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
+Imports: 
+    purrr,
+    readxl
