@@ -119,9 +119,6 @@ insert.date_info <- function(data, conn, ...) {
   if ("entity_name" %in% colnames(data))
     data$entity_name <- NULL
   ID_DATE_INFO <- c()
-  # Remove double white spaces
-  data$date_type <- unlist(lapply(data$date_type,
-                                  gsub, pattern = "  ", replacement = " "))
   for (i in seq_len(nrow(data))) {
     # Get info from EMBSeCBIO
     db <- dabr::select(conn,
