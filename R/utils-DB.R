@@ -35,6 +35,21 @@ add_records <- function(conn, table, data, dry_run = FALSE, ...) {
            })
 }
 
+#' Extract parameter named quiet
+#'
+#' Extract parameter named quiet from a list of optional parameters, if not
+#' found, then return \code{FALSE} as the default value for \code{quiet}.
+#'
+#' @param ... Optional parameters.
+#' @return Value for \code{quiet}.
+#'
+#' @keywords internal
+get_quiet <- function(...) {
+  if (("quiet" %in% names(list(...))))
+    return(unname(unlist(list(...)["quiet"])))
+  return(FALSE)
+}
+
 #' Insert records in the DB
 #'
 #' @importFrom magrittr `%>%`
@@ -49,54 +64,6 @@ add_records <- function(conn, table, data, dry_run = FALSE, ...) {
 #' @export
 insert <- function(data, ...) {
   UseMethod("insert", data)
-}
-
-#' @inheritParams dabr::select
-#' @rdname insert
-#' @export
-insert.age_model2 <- function(data, conn, ...) {
-  quiet <- get_quiet(...)
-
-  if ("site_name" %in% colnames(data))
-    data$entity_name <- NULL
-  ID_SAMPLE <- c()
-  data$sample_size <- with(data,
-                           ifelse(is.na(sample_size), "UNKN", sample_size))
-  for (i in seq_len(nrow(data))) {
-    # This check might be redundant (CHECK)
-    if (is.na(data$sample_size[i])) {
-      warning("The sample_size for row ", i, " is empty.")
-      log_warnings(data[i, ], "charcoal.csv")
-      next
-    }
-
-    # Get info from EMBSeCBIO
-    db <- dabr::select(conn,
-                       "SELECT * FROM charcoal WHERE",
-                       "ID_SAMPLE = ", data$ID_SAMPLE[i],
-                       # "AND quantity", na(data$quantity[i]),
-                       # "AND sample_size", na(data$sample_size[i], TRUE),
-                       quiet = quiet)
-    if (nrow(db) == 1) {
-      if (!quiet)
-        message(paste0("Existing charcoal: ", i))
-    } else if (nrow(db) > 1) {
-      stop(paste0("Duplicated charcoal: ", i, "\nIDs: ",
-                  paste0(db$ID_SAMPLE, collapse = ", ")))
-    } else {
-      if (!quiet)
-        message(paste0("New charcoal: ", i))
-      add_records(conn, "charcoal", data[i, ], ...)
-      db <- dabr::select(conn,
-                         "SELECT * FROM charcoal WHERE",
-                         "ID_SAMPLE = ", data$ID_SAMPLE[i],
-                         # "AND quantity", na(data$quantity[i]),
-                         # "AND sample_size", na(data$sample_size[i], TRUE),
-                         quiet = quiet)
-    }
-    ID_SAMPLE <- c(ID_SAMPLE, db$ID_SAMPLE)
-  }
-  ID_SAMPLE
 }
 
 #' @inheritParams dabr::select
@@ -162,11 +129,11 @@ insert.date_info <- function(data, conn, ...) {
                        "AND avg_depth", na(data$avg_depth[i]),
                        "AND thickness", na(data$thickness[i]),
                        "AND lab_num", na(data$lab_num[i], TRUE),
-                       "AND ID_MAT_DATED", na(data$ID_MAT_DATED[i]),
+                       "AND ID_MAT_DATED", na(data$ID_MAT_DATED[i], TRUE),
                        "AND dated_age", na(data$dated_age[i]),
                        "AND error_positive", na(data$error_positive[i]),
                        "AND error_negative", na(data$error_negative[i]),
-                       "AND ID_DATE_TYPE", na(data$ID_DATE_TYPE[i]),
+                       "AND ID_DATE_TYPE", na(data$ID_DATE_TYPE[i], TRUE),
                        quiet = quiet)
     if (nrow(db) == 1) {
       if (!quiet)
@@ -183,11 +150,11 @@ insert.date_info <- function(data, conn, ...) {
                          "AND avg_depth", na(data$avg_depth[i]),
                          "AND thickness", na(data$thickness[i]),
                          "AND lab_num", na(data$lab_num[i], TRUE),
-                         "AND ID_MAT_DATED", na(data$ID_MAT_DATED[i]),
+                         "AND ID_MAT_DATED", na(data$ID_MAT_DATED[i], TRUE),
                          "AND dated_age", na(data$dated_age[i]),
                          "AND error_positive", na(data$error_positive[i]),
                          "AND error_negative", na(data$error_negative[i]),
-                         "AND ID_DATE_TYPE", na(data$ID_DATE_TYPE[i]),
+                         "AND ID_DATE_TYPE", na(data$ID_DATE_TYPE[i], TRUE),
                          quiet = quiet)
     }
     ID_DATE_INFO <- c(ID_DATE_INFO, db$ID_DATE_INFO)
@@ -216,6 +183,15 @@ insert.entity <- function(data, conn, ...) {
     }
     data$site_name <- NULL
   }
+
+  # Verify if the entity data has publications, if so, then extract them into
+  # a separate tibble.
+  if ("citation" %in% colnames(data)) {
+    pub_tb <- tibble::tibble(citation = data$citation) %>%
+      magrittr::set_class(c("pub", class(.)))
+    data <- data %>%
+      dplyr::select(-citation)
+  }
   # Get info from EMBSeCBIO
   db <- dabr::select(conn,
                      "SELECT * FROM entity WHERE entity_name = ",
@@ -238,7 +214,18 @@ insert.entity <- function(data, conn, ...) {
                        data$ID_SITE,
                        quiet = quiet)
   }
-  db$ID_ENTITY
+  ID_ENTITY <- db$ID_ENTITY
+  if (!is.null(ID_ENTITY)) {
+    # Insert publication
+    ID_PUB <- pub_tb %>%
+      insert(conn = conn, ...)
+    # Insert entity-publication link
+    tibble::tibble(ID_ENTITY = ID_ENTITY,
+                   ID_PUB = ID_PUB) %>%
+      magrittr::set_class(c("entity_pub", class(.))) %>%
+      insert(conn = conn, ...)
+  }
+  return(invisible(ID_ENTITY))
 }
 
 #' @inheritParams dabr::select
@@ -262,27 +249,27 @@ insert.entity_pub <- function(data, conn, ...) {
                        quiet = quiet)
   }
 }
-#'
-#' #' @inheritParams dabr::select
-#' #' @rdname insert
-#' #' @export
-#' insert.model_name <- function(data, conn, ...) {
-#'   quiet <- get_quiet(...)
-#'
-#'   # Get info from the EMBSeCBIO
-#'   db <- dabr::select(conn,
-#'                      "SELECT * FROM model_name WHERE model_name = ",
-#'                      dabr::quote(data$model_name),
-#'                      quiet = quiet)
-#'   if (nrow(db) == 0) {
-#'     add_records(conn, "model_name", data, ...)
-#'     db <- dabr::select(conn,
-#'                        "SELECT * FROM model_name WHERE model_name = ",
-#'                        dabr::quote(data$model_name),
-#'                        quiet = quiet)
-#'   }
-#'   db$ID_MODEL
-#' }
+
+# #' @inheritParams dabr::select
+# #' @rdname insert
+# #' @export
+# insert.model_name <- function(data, conn, ...) {
+#   quiet <- get_quiet(...)
+#
+#   # Get info from the EMBSeCBIO
+#   db <- dabr::select(conn,
+#                      "SELECT * FROM model_name WHERE model_name = ",
+#                      dabr::quote(data$model_name),
+#                      quiet = quiet)
+#   if (nrow(db) == 0) {
+#     add_records(conn, "model_name", data, ...)
+#     db <- dabr::select(conn,
+#                        "SELECT * FROM model_name WHERE model_name = ",
+#                        dabr::quote(data$model_name),
+#                        quiet = quiet)
+#   }
+#   db$ID_MODEL
+# }
 
 #' @inheritParams dabr::select
 #' @rdname insert
