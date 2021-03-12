@@ -196,12 +196,12 @@ commit <- function(conn,
     msg(site_tb$site_name[i], quiet = quiet)
     # Insert site (if new) and retrieve ID_SITE
     ID_SITE <- embsecbio::insert(site_tb[i, ], conn, quiet = quiet)
-    if (!all(is.null(entity_tb$ID_SITE))) new_sites <- new_sites + 1
+    if (!all(is.null(ID_SITE))) new_sites <- new_sites + 1
 
     # Subset entities linked to the current site
     entity_idx <- cln_str(entity_tb$site_name) == cln_str(site_tb$site_name[i])
     entity_tmp <- entity_tb[entity_idx, ] %>%
-      dplyr::mutate(ID_SITE = ID_SITE)
+      dplyr::mutate(ID_SITE = ID_SITE, .before = 1)
 
     # Extract unique entity(ies) linked to the current site
     entities <- unique(entity_tmp$entity_name)
@@ -244,11 +244,12 @@ commit <- function(conn,
       if (sum(idx, na.rm = TRUE) > 0 && allow_duplicates) {
         sample_tmp$avg_depth[idx] <- seq_len(sum(idx, na.rm = TRUE))
       }
-      ID_SAMPLE <- embsecbio::insert(sample_tmp, conn, quiet = quiet)
-      if (!all(is.null(ID_SAMPLE))) {
+      ID_SAMPLE <- sample_tmp %>%
+        embsecbio::insert(conn, quiet = quiet)
+      sample_tmp <- sample_tmp %>%
+        dplyr::mutate(ID_SAMPLE = ID_SAMPLE, .before = 1)
+      if (!all(is.null(ID_SAMPLE)))
         new_samples <- new_samples + length(ID_SAMPLE)
-        new_charcoal <- new_charcoal + length(ID_SAMPLE)
-      }
       if (length(unique(ID_SAMPLE)) != length(ID_SAMPLE)) {
         stop("Duplicated samples found for\n - Site: ",
              site_tb$site_name[i], "\n - Entity: ",
