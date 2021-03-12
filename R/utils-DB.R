@@ -418,3 +418,22 @@ insert.site <- function(data, conn, ...) {
   }
   db$ID_SITE
 }
+
+#' Convert \code{NA} and \code{NULL} values to \code{"NULL"}
+#'
+#' @param x Column entry, can be numeric, logical, or character.
+#' @param quote Boolean flag to indicate whether or not to add quotes to
+#'     \code{x}.
+#'
+#' @return \code{MySQL} \code{NULL} friendly value.
+#' @keywords internal
+#'
+#' @examples
+#' rpd:::na(NA)
+#' rpd:::na(1)
+#' rpd:::na("A", TRUE)
+na <- function(x, quote = FALSE) {
+  ifelse(is.na(x) | is.null(x),
+         "IS NULL",
+         paste0("= ", ifelse(quote, dabr::quote(x), x)))
+}
