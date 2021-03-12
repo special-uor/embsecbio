@@ -94,6 +94,19 @@ list_sheets <- function() {
     "Age model")
 }
 
+#' Log records with warnings
+#'
+#' @param data Tibble with the record data.
+#' @param file Filename where logs will be stored.
+#' @inheritParams base::write
+#'
+#' @keywords internal
+log_warnings <- function(data, file, append = TRUE, sep = ",") {
+  if (!file.exists(file))
+    write(paste0(colnames(data), collapse = sep), file, append = append)
+  write(paste0(data, collapse = sep), file, append = TRUE)
+}
+
 #' Map string to reference list
 #' @importFrom magrittr `%>%`
 #' @param str String to match.
