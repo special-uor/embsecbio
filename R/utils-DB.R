@@ -285,6 +285,7 @@ insert.pollen_data <- function(data, conn, ...) {
                        "SELECT * FROM pollen_data WHERE ID_SAMPLE = ",
                        data$ID_SAMPLE[i],
                        "AND taxon_clean", na(data$taxon_clean[i], TRUE),
+                       "AND taxon_count", na(data$taxon_count[i]),
                        quiet = quiet)
     if (nrow(db) == 1) {
       if (!quiet)
@@ -300,6 +301,7 @@ insert.pollen_data <- function(data, conn, ...) {
                          "SELECT * FROM pollen_data WHERE ID_SAMPLE = ",
                          data$ID_SAMPLE[i],
                          "AND taxon_clean", na(data$taxon_clean[i], TRUE),
+                         "AND taxon_count", na(data$taxon_count[i]),
                          quiet = quiet)
     }
     ID_SAMPLE_TAXA <- c(ID_SAMPLE_TAXA, db$ID_SAMPLE_TAXA)
