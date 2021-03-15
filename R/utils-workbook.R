@@ -115,6 +115,8 @@ log_warnings <- function(data, file, append = TRUE, sep = ",") {
 #' @return Matching string (if any).
 #' @keywords internal
 map_string <- function(str, ref = embsecbio()$tables) {
+  # Local binding
+  . <- NULL
   str <- tolower(str) %>%
     gsub("metadata", "", .) %>%
     # gsub("data", "", .) %>%

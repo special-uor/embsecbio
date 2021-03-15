@@ -163,6 +163,8 @@ insert.date_info <- function(data, conn, ...) {
 #' @rdname insert
 #' @export
 insert.entity <- function(data, conn, ...) {
+  # Local binding
+  . <- citation <- NULL
   quiet <- get_quiet(...)
 
   if ("site_name" %in% colnames(data)) {
@@ -272,6 +274,8 @@ insert.entity_pub <- function(data, conn, ...) {
 #' @rdname insert
 #' @export
 insert.pollen_data <- function(data, conn, ...) {
+  # Local bindings
+  ID_SAMPLE <- taxon_clean <- taxon_count <- NULL
   quiet <- get_quiet(...)
 
   data <- data %>%

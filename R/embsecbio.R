@@ -25,7 +25,9 @@ commit <- function(conn,
   if (!dabr::is.connected(conn))
     stop("Invalid DB connection object!")
   # Local bindings
-  depth_bottom <- depth_top <- entity_name <- thickness <- NULL
+  . <- depth_bottom <- depth_top <- entity_name <- sample_name <- NULL
+  thickness <- NULL
+
   # Split wdir and workbook name
   if (is.na(wdir)) {
     wdir <- dirname(workbook)
