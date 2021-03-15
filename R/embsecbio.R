@@ -292,7 +292,9 @@ commit <- function(conn,
       # Subset age model records linked to the current entity
       age_model_idx <- cln_str(age_model_tb$entity_name) == cln_str(entities[j])
       age_model_tmp <- age_model_tb[age_model_idx, ] %>%
-        dplyr::mutate(ID_SAMPLE = ID_SAMPLE, .before = 1)
+        dplyr::mutate(ID_SAMPLE = ID_SAMPLE, .before = 1) %>%
+        dplyr::select(-dplyr::starts_with("avg_depth"),
+                      -dplyr::starts_with("sample_name"))
 
       ID_SAMPLE2 <- age_model_tmp %>%
         embsecbio::insert(conn = conn, quiet = TRUE)
