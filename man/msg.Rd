@@ -20,13 +20,13 @@ the message}
 Display message inside a box
 }
 \examples{
-rpd:::msg("A")
-rpd:::msg("AB")
-rpd:::msg("ABC")
-rpd:::msg("ABCD")
-rpd:::msg("ABCD", limit = 30)
-rpd:::msg("ABCD", quiet = TRUE)
-rpd:::msg("ABCD", nl = FALSE)
+embsecbio:::msg("A")
+embsecbio:::msg("AB")
+embsecbio:::msg("ABC")
+embsecbio:::msg("ABCD")
+embsecbio:::msg("ABCD", limit = 30)
+embsecbio:::msg("ABCD", quiet = TRUE)
+embsecbio:::msg("ABCD", nl = FALSE)
 
 }
 \keyword{internal}
