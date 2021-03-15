@@ -53,6 +53,7 @@ cln_str <- function(str, rm_wht = FALSE, keep = c("_-")) {
 #' embsecbio:::msg("ABCD", quiet = TRUE)
 #' embsecbio:::msg("ABCD", nl = FALSE)
 #'
+#' @noRd
 #' @keywords internal
 msg <- function(str, quiet = FALSE, limit = 80, nl = TRUE) {
   if (!quiet) {
