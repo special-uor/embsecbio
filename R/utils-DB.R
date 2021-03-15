@@ -423,3 +423,35 @@ na <- function(x, quote = FALSE) {
          "IS NULL",
          paste0("= ", ifelse(quote, dabr::quote(x), x)))
 }
+
+#' Update records from tibble or data frame to database
+#' @param conn DB connection object.
+#' @param table Table name.
+#' @param data Tibble object with the records to be updated in the database.
+#' @param dry_run Boolean flag to return the query without running it.
+#' @param PK Numeric vector with the indices of the columns to use as primary
+#'     key.
+#' @param ... Optional parameters, including a boolean flag to hide status
+#'     messages (\code{quiet}).
+#'
+#' @keywords internal
+update_records <- function(conn, table, data, dry_run = FALSE, PK = 1, ...) {
+  if (length(PK) < 1)
+    stop("The `PK` parameter cannot be empty.", call. = TRUE)
+  # Use add_records to create the basic INSERT query, then add the condition
+  # ON DUPLICATE KEY UPDATE
+  query <- paste0(add_records(conn, table, data, dry_run = TRUE),
+                  " ON DUPLICATE KEY UPDATE ",
+                  paste0(colnames(data)[-PK], " = VALUES(",
+                         colnames(data)[-PK], ")", collapse = ", "))
+  if (dry_run)
+    return(query)
+  tryCatch(dabr::update(conn, query, ...),
+           error = function(e) {
+             message("The following query: \n",
+                     query,
+                     "\n\nFailed with the error: \n",
+                     e)
+             NULL
+           })
+}
