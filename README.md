@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# EMBSeCBIO
+# EMBSeCBIO <img src="inst/images/logo.png" alt="logo" align="right" height=200px/>
 
 <!-- badges: start -->
 
@@ -42,3 +42,9 @@ devtools::install_github("special-uor/embsecbio")
 <!-- ## basic example code -->
 
 <!-- ``` -->
+
+## Datasets
+
+1.  Harrison, Sandy and Marinova, Elena (2017): EMBSeCBIO modern pollen
+    biomisation. University of Reading. Dataset.
+    <http://dx.doi.org/10.17864/1947.109>
