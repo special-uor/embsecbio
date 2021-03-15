@@ -416,12 +416,13 @@ insert.site <- function(data, conn, ...) {
 #'     \code{x}.
 #'
 #' @return \code{MySQL} \code{NULL} friendly value.
+#' @noRd
 #' @keywords internal
 #'
 #' @examples
-#' rpd:::na(NA)
-#' rpd:::na(1)
-#' rpd:::na("A", TRUE)
+#' embsecbio:::na(NA)
+#' embsecbio:::na(1)
+#' embsecbio:::na("A", TRUE)
 na <- function(x, quote = FALSE) {
   ifelse(is.na(x) | is.null(x),
          "IS NULL",
