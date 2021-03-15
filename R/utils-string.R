@@ -11,11 +11,11 @@
 #' @return New string without special characters.
 #'
 #' @examples
-#' ageR:::cln_str("ÀÊ?")
-#' ageR:::cln_str("ÀÊ?_AE?")
-#' ageR:::cln_str("ÀÊ?.AE?")
-#' ageR:::cln_str("ÀÊ?.AE?", keep = "\\._-")
-#' ageR:::cln_str("ÀÊ? AE?", rm_wht = TRUE)
+#' embsecbio:::cln_str("ÀÊ?")
+#' embsecbio:::cln_str("ÀÊ?_AE?")
+#' embsecbio:::cln_str("ÀÊ?.AE?")
+#' embsecbio:::cln_str("ÀÊ?.AE?", keep = "\\._-")
+#' embsecbio:::cln_str("ÀÊ? AE?", rm_wht = TRUE)
 #'
 #' @noRd
 #' @keywords internal
@@ -45,13 +45,13 @@ cln_str <- function(str, rm_wht = FALSE, keep = c("_-")) {
 #'     the message
 #'
 #' @examples
-#' rpd:::msg("A")
-#' rpd:::msg("AB")
-#' rpd:::msg("ABC")
-#' rpd:::msg("ABCD")
-#' rpd:::msg("ABCD", limit = 30)
-#' rpd:::msg("ABCD", quiet = TRUE)
-#' rpd:::msg("ABCD", nl = FALSE)
+#' embsecbio:::msg("A")
+#' embsecbio:::msg("AB")
+#' embsecbio:::msg("ABC")
+#' embsecbio:::msg("ABCD")
+#' embsecbio:::msg("ABCD", limit = 30)
+#' embsecbio:::msg("ABCD", quiet = TRUE)
+#' embsecbio:::msg("ABCD", nl = FALSE)
 #'
 #' @keywords internal
 msg <- function(str, quiet = FALSE, limit = 80, nl = TRUE) {
