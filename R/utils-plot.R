@@ -8,6 +8,9 @@
 #' @return \code{ggplot2} object.
 #' @export
 plot_age_depth <- function(conn, entity_name, date_fill = "#F1C40F", quiet = TRUE,  ...) {
+  # Local bindings
+  `BACON-IntCal13` <- `BACON-IntCal20` <- Original <- NULL
+  age_model <- avg_depth <- dated_age <- depths <- value <- NULL
   # Load data from the database
   entity_tb <- dabr::select(conn,
                             "SELECT * FROM entity WHERE entity_name = ",
@@ -58,6 +61,15 @@ plot_age_depth <- function(conn, entity_name, date_fill = "#F1C40F", quiet = TRU
   return(p)
 }
 
+#' @importFrom grDevices grey
+# @param df
+# @param dates
+# @param entity
+# @param hiatuses
+# @param dates_fill
+#
+# @return
+#' @keywords internal
 .plot_age_depth <- function(df, dates, entity = NULL, hiatuses = NULL, dates_fill = "orange") {
   # Local binding
   x <- y <- q_low <- q_up <- depth <- age <- age_min <- age_max <- NULL
