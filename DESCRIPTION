@@ -25,3 +25,5 @@ Imports:
     stringi,
     stringr,
     tibble
+Depends: 
+    R (>= 2.10)
