@@ -37,7 +37,33 @@ And the development version from [GitHub](https://github.com/) with:
 # install.packages("devtools")
 devtools::install_github("special-uor/embsecbio")
 ```
-<!-- ## Example -->
+## Example
+
+Obtain the top 10 sites and their corresponding metadata:
+```{r}
+`%>%` <- magrittr::`%>%`
+embsecbio::site %>% 
+  dplyr::left_join(embsecbio::site_type) %>%
+  dplyr::left_join(embsecbio::basin_size) %>%
+  dplyr::left_join(embsecbio::catch_size) %>%
+  dplyr::left_join(embsecbio::basin_size) %>%
+  dplyr::select(-ID_SITE_TYPE, -ID_BASIN_SIZE, -ID_CATCH_SIZE) %>%
+  dplyr::rename(site_type = desc_site_type,
+                basin_size = basin_desc) %>%
+  dplyr::slice(1:10) %>%
+  knitr::kable()
+```
+
+
+Obtain the top 10 entities and their corresponding metadata:
+```{r}
+`%>%` <- magrittr::`%>%`
+embsecbio::entity %>% 
+  dplyr::left_join(embsecbio::entity_type) %>%
+  dplyr::select(-ID_ENTITY_TYPE) %>%
+  dplyr::slice(1:10) %>%
+  knitr::kable()
+```
 
 <!-- This is a basic example which shows you how to solve a common problem: -->
 
