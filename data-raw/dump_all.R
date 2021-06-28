@@ -39,77 +39,77 @@ embsecbio:::embsecbio()$tables %>%
 age_model <- conn %>%
   dabr::select_all("age_model") %>%
   magrittr::set_class(c("age_model", class(.)))
-usethis::use_data(age_model, overwrite = TRUE)
+usethis::use_data(age_model, overwrite = TRUE, compress = "xz")
 
 basin_size <- conn %>%
   dabr::select_all("basin_size") %>%
   magrittr::set_class(c("basin_size", class(.)))
-usethis::use_data(basin_size, overwrite = TRUE)
+usethis::use_data(basin_size, overwrite = TRUE, compress = "xz")
 
 catch_size <- conn %>%
   dabr::select_all("catch_size") %>%
   magrittr::set_class(c("catch_size", class(.)))
-usethis::use_data(catch_size, overwrite = TRUE)
+usethis::use_data(catch_size, overwrite = TRUE, compress = "xz")
 
 date_info <- conn %>%
   dabr::select_all("date_info") %>%
   magrittr::set_class(c("date_info", class(.)))
-usethis::use_data(date_info, overwrite = TRUE)
+usethis::use_data(date_info, overwrite = TRUE, compress = "xz")
 
 date_type <- conn %>%
   dabr::select_all("date_type") %>%
   magrittr::set_class(c("date_type", class(.)))
-usethis::use_data(date_type, overwrite = TRUE)
+usethis::use_data(date_type, overwrite = TRUE, compress = "xz")
 
 entity <- conn %>%
   dabr::select_all("entity") %>%
   magrittr::set_class(c("entity", class(.)))
-usethis::use_data(entity, overwrite = TRUE)
+usethis::use_data(entity, overwrite = TRUE, compress = "xz")
 
 entity_pub <- conn %>%
   dabr::select_all("entity_pub") %>%
   magrittr::set_class(c("entity_pub", class(.)))
-usethis::use_data(entity_pub, overwrite = TRUE)
+usethis::use_data(entity_pub, overwrite = TRUE, compress = "xz")
 
 entity_type <- conn %>%
   dabr::select_all("entity_type") %>%
   magrittr::set_class(c("entity_type", class(.)))
-usethis::use_data(entity_type, overwrite = TRUE)
+usethis::use_data(entity_type, overwrite = TRUE, compress = "xz")
 
 mat_dated <- conn %>%
   dabr::select_all("mat_dated") %>%
   magrittr::set_class(c("mat_dated", class(.)))
-usethis::use_data(mat_dated, overwrite = TRUE)
+usethis::use_data(mat_dated, overwrite = TRUE, compress = "xz")
 
 pollen_data <- conn %>%
   dabr::select_all("pollen_data") %>%
   magrittr::set_class(c("pollen_data", class(.)))
-usethis::use_data(pollen_data, overwrite = TRUE)
+usethis::use_data(pollen_data, overwrite = TRUE, compress = "xz")
 
 pub <- conn %>%
   dabr::select_all("pub") %>%
   magrittr::set_class(c("pub", class(.)))
-usethis::use_data(pub, overwrite = TRUE)
+usethis::use_data(pub, overwrite = TRUE, compress = "xz")
 
 sample <- conn %>%
   dabr::select_all("sample") %>%
   magrittr::set_class(c("sample", class(.)))
-usethis::use_data(sample, overwrite = TRUE)
+usethis::use_data(sample, overwrite = TRUE, compress = "xz")
 
 sample_type <- conn %>%
   dabr::select_all("sample_type") %>%
   magrittr::set_class(c("sample_type", class(.)))
-usethis::use_data(sample_type, overwrite = TRUE)
+usethis::use_data(sample_type, overwrite = TRUE, compress = "xz")
 
 site <- conn %>%
   dabr::select_all("site") %>%
   magrittr::set_class(c("site", class(.)))
-usethis::use_data(site, overwrite = TRUE)
+usethis::use_data(site, overwrite = TRUE, compress = "xz")
 
 site_type <- conn %>%
   dabr::select_all("site_type") %>%
   magrittr::set_class(c("site_type", class(.)))
-usethis::use_data(site_type, overwrite = TRUE)
+usethis::use_data(site_type, overwrite = TRUE, compress = "xz")
 
 # Close database connection
 dabr::close_conn(conn)
