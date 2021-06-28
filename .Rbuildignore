@@ -4,3 +4,5 @@
 ^LICENSE\.md$
 ^\.github$
 ^R\.ignore$
+^inst/extdocs/*\.xlsx$
+^data-raw$
