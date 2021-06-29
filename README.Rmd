@@ -56,6 +56,18 @@ embsecbio::entity %>%
   knitr::kable()
 ```
 
+
+Find entities linked to sites:
+```{r}
+`%>%` <- magrittr::`%>%`
+ents <- embsecbio::site %>%
+  dplyr::slice(1:4) %>%
+  embsecbio::get_entities()
+
+ents %>%
+  knitr::kable()
+```
+
 <!-- This is a basic example which shows you how to solve a common problem: -->
 
 <!-- ```{r example} -->

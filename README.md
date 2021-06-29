@@ -77,6 +77,40 @@ embsecbio::entity %>%
 |         10 |       10 | Amtkel core 1    |    43.27 |     41.31 |      1830 | NOAA      | core               | PCT                 | if sample age = modern |
 |         11 |       11 | Gagra \#471      |    43.28 |     40.27 |         0 | NOAA      | profile or section | PCT                 | if sample age = modern |
 
+Find entities linked to sites:
+
+``` r
+`%>%` <- magrittr::`%>%`
+ents <- embsecbio::site %>%
+  dplyr::slice(1:4) %>%
+  embsecbio::get_entities()
+
+ents %>%
+  knitr::kable()
+```
+
+| ID\_ENTITY | ID\_SITE | entity\_name    | latitude | longitude | elevation | source    | entity\_type    | mod\_or\_0ka\_class | comments               |
+| ---------: | -------: | :-------------- | -------: | --------: | --------: | :-------- | :-------------- | :------------------ | :--------------------- |
+|          2 |        2 | Sakhare core 1  |    41.58 |     45.32 |       800 | EMBSECBIO | core            | PCT                 | if sample age = modern |
+|          3 |        3 | Kumisi core 1   |    41.58 |     44.83 |       469 | EMBSECBIO | core            | PCT                 | if sample age = modern |
+|          4 |        4 | Tsavkisi core 1 |    41.68 |     44.72 |      1100 | EMBSECBIO | core            | PCT                 | if sample age = modern |
+|          5 |        5 | Imera core 1    |    41.65 |     44.22 |      1610 | EMBSECBIO | core            | PCT                 | if sample age = modern |
+|       1169 |        2 | Sakhare-2       |    41.58 |     45.32 |       800 | EMBSECBIO | surface sample  | SS                  | NA                     |
+|       1170 |        2 | Sakhare-3       |    41.58 |     45.32 |       800 | EMBSECBIO | surface sample  | SS                  | NA                     |
+|       1171 |        2 | Sakhare-4       |    41.58 |     45.32 |       800 | EMBSECBIO | surface sample  | SS                  | NA                     |
+|       1172 |        3 | Kumisi-2        |    41.58 |     44.83 |       469 | EMBSECBIO | surface sample  | SS                  | NA                     |
+|       1173 |        3 | Kumisi-3        |    41.58 |     44.83 |       469 | EMBSECBIO | surface sample  | SS                  | NA                     |
+|       1174 |        3 | Kumisi-4        |    41.58 |     44.83 |       469 | EMBSECBIO | surface sample  | SS                  | NA                     |
+|       1175 |        4 | Tsavkisi-1      |    41.68 |     44.72 |      1100 | EMBSECBIO | surface sample  | SS                  | NA                     |
+|       1176 |        4 | Tsavkisi-2      |    41.68 |     44.72 |      1100 | EMBSECBIO | surface sample  | SS                  | NA                     |
+|       1177 |        4 | Tsavkisi-3      |    41.68 |     44.72 |      1100 | EMBSECBIO | surface sample  | SS                  | NA                     |
+|       1178 |        4 | Tsavkisi-4      |    41.68 |     44.72 |      1100 | EMBSECBIO | surface sample  | SS                  | NA                     |
+|       1186 |        5 | Imera-1         |    41.65 |     44.22 |      1610 | EMBSECBIO | sediment sample | SS                  | NA                     |
+|       1187 |        5 | Imera-2         |    41.65 |     44.22 |      1610 | EMBSECBIO | sediment sample | SS                  | NA                     |
+|       1188 |        5 | Imera-3         |    41.65 |     44.22 |      1610 | EMBSECBIO | sediment sample | SS                  | NA                     |
+|       1189 |        5 | Imera-4         |    41.65 |     44.22 |      1610 | EMBSECBIO | sediment sample | SS                  | NA                     |
+|       1197 |        2 | Sakhare-1       |    41.58 |     45.32 |       800 | EMBSECBIO | surface sample  | SS                  | NA                     |
+
 <!-- This is a basic example which shows you how to solve a common problem: -->
 
 <!-- ```{r example} -->
