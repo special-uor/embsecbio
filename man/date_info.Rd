@@ -12,11 +12,11 @@ A data frame with 916 rows and 11 variables:
 \item{avg_depth}{PENDING}
 \item{thickness}{PENDING}
 \item{lab_num}{PENDING}
-\item{ID_MAT_DATED}{PENDING}
+\item{mat_dated}{PENDING}
 \item{dated_age}{PENDING}
 \item{error_positive}{PENDING}
 \item{error_negative}{PENDING}
-\item{ID_DATE_TYPE}{PENDING}
+\item{date_type}{PENDING}
 \item{date_comments}{PENDING}
 }
 }

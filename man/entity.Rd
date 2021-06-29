@@ -5,7 +5,7 @@
 \alias{entity}
 \title{\code{entity}}
 \format{
-A data frame with 1802 rows and 8 variables:
+A data frame with 1802 rows and 10 variables:
 \describe{
 \item{ID_ENTITY}{PENDING}
 \item{ID_SITE}{PENDING}
@@ -13,7 +13,9 @@ A data frame with 1802 rows and 8 variables:
 \item{latitude}{PENDING}
 \item{longitude}{PENDING}
 \item{elevation}{PENDING}
-\item{ID_ENTITY_TYPE}{PENDING}
+\item{entity_type}{PENDING}
+\item{mod_or_0ka_class}{PENDING}
+\item{comments}{PENDING}
 \item{source}{PENDING}
 }
 }

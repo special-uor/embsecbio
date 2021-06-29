@@ -12,9 +12,9 @@ A data frame with 1463 rows and 8 variables:
 \item{latitude}{PENDING}
 \item{longitude}{PENDING}
 \item{elevation}{PENDING}
-\item{ID_SITE_TYPE}{PENDING}
-\item{ID_BASIN_SIZE}{PENDING}
-\item{ID_CATCH_SIZE}{PENDING}
+\item{site_type}{PENDING}
+\item{basin_size}{PENDING}
+\item{catch_size}{PENDING}
 }
 }
 \usage{

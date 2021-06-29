@@ -11,7 +11,7 @@ A data frame with 10339 rows and 6 variables:
 \item{ID_ENTITY}{PENDING}
 \item{sample_name}{PENDING}
 \item{avg_depth}{PENDING}
-\item{ID_SAMPLE_TYPE}{PENDING}
+\item{sample_type}{PENDING}
 \item{count_type}{PENDING}
 }
 }
