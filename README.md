@@ -37,45 +37,31 @@ Obtain the top 10 sites and their corresponding metadata:
 
 ``` r
 `%>%` <- magrittr::`%>%`
-embsecbio::site %>% 
-  dplyr::left_join(embsecbio::site_type) %>%
-  dplyr::left_join(embsecbio::basin_size) %>%
-  dplyr::left_join(embsecbio::catch_size) %>%
-  dplyr::left_join(embsecbio::basin_size) %>%
-  dplyr::select(-ID_SITE_TYPE, -ID_BASIN_SIZE, -ID_CATCH_SIZE) %>%
-  dplyr::rename(site_type = desc_site_type,
-                basin_size = basin_desc) %>%
+embsecbio::site %>%
   dplyr::slice(1:10) %>%
   knitr::kable()
-#> Joining, by = "ID_SITE_TYPE"
-#> Joining, by = "ID_BASIN_SIZE"
-#> Joining, by = "ID_CATCH_SIZE"
-#> Joining, by = c("ID_BASIN_SIZE", "basin_desc")
 ```
 
-| ID\_SITE | site\_name | latitude | longitude | elevation | ID\_HIGHER | site\_type                                    | basin\_size            | catch\_size       |
-| -------: | :--------- | -------: | --------: | --------: | :--------- | :-------------------------------------------- | :--------------------- | :---------------- |
-|        2 | Sakhare    |    41.58 |     45.32 |       800 | LACU       | lacustrine, playa                             | small (0.01-1 km2)     | small (\<10 km2)  |
-|        3 | Kumisi     |    41.58 |     44.83 |       469 | LACU       | lacustrine, natural open-water, tectonic lake | medium (1.1-50 km2)    | small (\<10 km2)  |
-|        4 | Tsavkisi   |    41.68 |     44.72 |      1100 | TMBF       | terrestrial, mire, bog                        | small (0.01-1 km2)     | small (\<10 km2)  |
-|        5 | Imera      |    41.65 |     44.22 |      1610 | TMBF       | terrestrial, mire, bog                        | small (0.01-1 km2)     | small (\<10 km2)  |
-|        6 | Aligol     |    41.63 |     44.02 |      1550 | TMBF       | terrestrial, mire, bog                        | small (0.01-1 km2)     | small (\<10 km2)  |
-|        7 | Ispani-II  |    41.87 |     41.80 |         2 | TMBF       | terrestrial, mire, bog, raised bog            | medium (1.1-50 km2)    | small (\<10 km2)  |
-|        8 | Lake Urmia |    37.50 |     45.50 |      1297 | LACU       | lacustrine, natural open-water                | very large (\>500 km2) | large (\>500 km2) |
-|        9 | Adange     |    43.31 |     41.33 |      1750 | FLUV       | fluvial                                       | small (0.01-1 km2)     | small (\<10 km2)  |
-|       10 | Amtkel     |    43.27 |     41.31 |      1830 | FLUV       | fluvial                                       | small (0.01-1 km2)     | small (\<10 km2)  |
-|       11 | Gagra 471  |    43.28 |     40.27 |         0 | FLUV       | fluvial                                       | small (0.01-1 km2)     | small (\<10 km2)  |
+| ID\_SITE | site\_name | latitude | longitude | elevation | site\_type                                    | basin\_size            | catch\_size       |
+| -------: | :--------- | -------: | --------: | --------: | :-------------------------------------------- | :--------------------- | :---------------- |
+|        2 | Sakhare    |    41.58 |     45.32 |       800 | lacustrine, playa                             | small (0.01-1 km2)     | small (\<10 km2)  |
+|        3 | Kumisi     |    41.58 |     44.83 |       469 | lacustrine, natural open-water, tectonic lake | medium (1.1-50 km2)    | small (\<10 km2)  |
+|        4 | Tsavkisi   |    41.68 |     44.72 |      1100 | terrestrial, mire, bog                        | small (0.01-1 km2)     | small (\<10 km2)  |
+|        5 | Imera      |    41.65 |     44.22 |      1610 | terrestrial, mire, bog                        | small (0.01-1 km2)     | small (\<10 km2)  |
+|        6 | Aligol     |    41.63 |     44.02 |      1550 | terrestrial, mire, bog                        | small (0.01-1 km2)     | small (\<10 km2)  |
+|        7 | Ispani-II  |    41.87 |     41.80 |         2 | terrestrial, mire, bog, raised bog            | medium (1.1-50 km2)    | small (\<10 km2)  |
+|        8 | Lake Urmia |    37.50 |     45.50 |      1297 | lacustrine, natural open-water                | very large (\>500 km2) | large (\>500 km2) |
+|        9 | Adange     |    43.31 |     41.33 |      1750 | fluvial                                       | small (0.01-1 km2)     | small (\<10 km2)  |
+|       10 | Amtkel     |    43.27 |     41.31 |      1830 | fluvial                                       | small (0.01-1 km2)     | small (\<10 km2)  |
+|       11 | Gagra 471  |    43.28 |     40.27 |         0 | fluvial                                       | small (0.01-1 km2)     | small (\<10 km2)  |
 
 Obtain the top 10 entities and their corresponding metadata:
 
 ``` r
 `%>%` <- magrittr::`%>%`
-embsecbio::entity %>% 
-  dplyr::left_join(embsecbio::entity_type) %>%
-  dplyr::select(-ID_ENTITY_TYPE) %>%
+embsecbio::entity %>%
   dplyr::slice(1:10) %>%
   knitr::kable()
-#> Joining, by = "ID_ENTITY_TYPE"
 ```
 
 | ID\_ENTITY | ID\_SITE | entity\_name     | latitude | longitude | elevation | source    | entity\_type       | mod\_or\_0ka\_class | comments               |
