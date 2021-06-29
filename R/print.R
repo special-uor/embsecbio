@@ -27,3 +27,14 @@ print.commit <- function(x, ...) {
   }
   invisible(x)
 }
+
+#' @rdname print
+#' @export
+print.site <- function(x, ...) {
+  # Local bindidng
+  . <- NULL
+  x %>%
+    magrittr::set_class(class(.)[-1]) %>% # Remove `site` class
+    print()
+  invisible(x)
+}
