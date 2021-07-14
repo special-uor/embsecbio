@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# EMBSeCBIO <img src="inst/images/logo.png" alt="logo" align="right" height=200px/>
+# EMBSeCBIO <img src="documentation/embsecbio/inst/images/logo.png" alt="logo" align="right" height=200px/>
 
 <!-- badges: start -->
 
