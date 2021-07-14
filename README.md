@@ -6,9 +6,9 @@
 <!-- badges: start -->
 
 [![](https://img.shields.io/badge/devel%20version-0.0.0.9000-yellow.svg)](https://github.com/special-uor/embsecbio)
+[![](https://www.r-pkg.org/badges/version/embsecbio?color=black)](https://cran.r-project.org/package=embsecbio)
 [![R build
 status](https://github.com/special-uor/embsecbio/workflows/R-CMD-check/badge.svg)](https://github.com/special-uor/embsecbio/actions)
-[![](https://www.r-pkg.org/badges/version/rpd?color=black)](https://cran.r-project.org/package=rpd)
 <!-- badges: end -->
 
 The goal of EMBSeCBIO is to provide functions to work with the Eastern

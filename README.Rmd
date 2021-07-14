@@ -17,8 +17,8 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 `r badger::badge_devel("special-uor/embsecbio", "yellow")`
+`r badger::badge_cran_release("embsecbio", "black")`
 `r badger::badge_github_actions("special-uor/embsecbio")`
-`r badger::badge_cran_release("rpd", "black")`
 <!-- badges: end -->
 
 The goal of EMBSeCBIO is to provide functions to work with the Eastern Mediterranean-Black Sea-Caspian-Corridor region and biome reconstructions database.
