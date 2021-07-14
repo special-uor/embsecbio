@@ -1,7 +1,9 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# EMBSeCBIO <img src="documentation/embsecbio/inst/images/logo.png" alt="logo" align="right" height=200px/>
+# EMBSeCBIO <img src="https://raw.githubusercontent.com/special-uor/documentation/main/embsecbio/inst/images/logo.png?token=ABHDUJC4BZGNWUO4E7H6ZWLA5335S" alt="logo" align="right" height=200px/>
+
+<!-- <img src="documentation/embsecbio/inst/images/logo.png" alt="logo" align="right" height=200px/> -->
 
 <!-- badges: start -->
 
