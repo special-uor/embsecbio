@@ -28,7 +28,7 @@ embsecbio:::embsecbio()$tables %>%
 #\'
 #\' A tibble with records for <tbl>.
 #\'
-#\' @format A data frame with <nrow(db)> rows and <ncol(db)> variables:
+#\' @format A data frame with \`r nrow(embsecbio::<tbl>)\` rows and \`r ncol(embsecbio::<tbl>)\` variables:
 #\' \\describe{
 <columns>
 #\' }
