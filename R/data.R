@@ -2,7 +2,7 @@
 #'
 #' A tibble with records for age_model.
 #'
-#' @format A data frame with 10131 rows and 13 variables:
+#' @format A data frame with `r nrow(embsecbio::age_model)` rows and `r ncol(embsecbio::age_model)` variables:
 #' \describe{
 #'   \item{ID_SAMPLE}{PENDING}
 #'   \item{est_age_provided}{PENDING}
@@ -24,7 +24,7 @@
 #'
 #' A tibble with records for date_info.
 #'
-#' @format A data frame with 916 rows and 11 variables:
+#' @format A data frame with `r nrow(embsecbio::date_info)` rows and `r ncol(embsecbio::date_info)` variables:
 #' \describe{
 #'   \item{ID_DATE_INFO}{PENDING}
 #'   \item{ID_ENTITY}{PENDING}
@@ -44,7 +44,7 @@
 #'
 #' A tibble with records for entity.
 #'
-#' @format A data frame with 1802 rows and 10 variables:
+#' @format A data frame with `r nrow(embsecbio::entity)` rows and `r ncol(embsecbio::entity)` variables:
 #' \describe{
 #'   \item{ID_ENTITY}{PENDING}
 #'   \item{ID_SITE}{PENDING}
@@ -63,7 +63,7 @@
 #'
 #' A tibble with records for entity_pub.
 #'
-#' @format A data frame with 784 rows and 3 variables:
+#' @format A data frame with `r nrow(embsecbio::entity_pub)` rows and `r ncol(embsecbio::entity_pub)` variables:
 #' \describe{
 #'   \item{ID_ENTITY_PUB}{PENDING}
 #'   \item{ID_ENTITY}{PENDING}
@@ -75,7 +75,7 @@
 #'
 #' A tibble with records for pollen_data.
 #'
-#' @format A data frame with 301197 rows and 4 variables:
+#' @format A data frame with `r nrow(embsecbio::pollen_data)` rows and `r ncol(embsecbio::pollen_data)` variables:
 #' \describe{
 #'   \item{ID_SAMPLE_TAXA}{PENDING}
 #'   \item{ID_SAMPLE}{PENDING}
@@ -88,7 +88,7 @@
 #'
 #' A tibble with records for pub.
 #'
-#' @format A data frame with 189 rows and 2 variables:
+#' @format A data frame with `r nrow(embsecbio::pub)` rows and `r ncol(embsecbio::pub)` variables:
 #' \describe{
 #'   \item{ID_PUB}{PENDING}
 #'   \item{citation}{PENDING}
@@ -99,7 +99,7 @@
 #'
 #' A tibble with records for sample.
 #'
-#' @format A data frame with 10339 rows and 6 variables:
+#' @format A data frame with `r nrow(embsecbio::sample)` rows and `r ncol(embsecbio::sample)` variables:
 #' \describe{
 #'   \item{ID_SAMPLE}{PENDING}
 #'   \item{ID_ENTITY}{PENDING}
@@ -114,7 +114,7 @@
 #'
 #' A tibble with records for site.
 #'
-#' @format A data frame with 1463 rows and 8 variables:
+#' @format A data frame with `r nrow(embsecbio::site)` rows and `r ncol(embsecbio::site)` variables:
 #' \describe{
 #'   \item{ID_SITE}{PENDING}
 #'   \item{site_name}{PENDING}
