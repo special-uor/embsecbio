@@ -5,7 +5,7 @@
 \alias{pollen_data}
 \title{\code{pollen_data}}
 \format{
-A data frame with 301197 rows and 4 variables:
+A data frame with 324681 rows and 4 variables:
 \describe{
 \item{ID_SAMPLE_TAXA}{PENDING}
 \item{ID_SAMPLE}{PENDING}

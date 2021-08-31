@@ -5,7 +5,7 @@
 \alias{pub}
 \title{\code{pub}}
 \format{
-A data frame with 186 rows and 2 variables:
+A data frame with 196 rows and 2 variables:
 \describe{
 \item{ID_PUB}{PENDING}
 \item{citation}{PENDING}

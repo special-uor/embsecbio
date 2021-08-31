@@ -5,7 +5,7 @@
 \alias{site}
 \title{\code{site}}
 \format{
-A data frame with 1463 rows and 8 variables:
+A data frame with 1472 rows and 8 variables:
 \describe{
 \item{ID_SITE}{PENDING}
 \item{site_name}{PENDING}

@@ -5,7 +5,7 @@
 \alias{sample}
 \title{\code{sample}}
 \format{
-A data frame with 10339 rows and 6 variables:
+A data frame with 11232 rows and 6 variables:
 \describe{
 \item{ID_SAMPLE}{PENDING}
 \item{ID_ENTITY}{PENDING}

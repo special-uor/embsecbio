@@ -5,7 +5,7 @@
 \alias{entity}
 \title{\code{entity}}
 \format{
-A data frame with 1802 rows and 10 variables:
+A data frame with 1811 rows and 10 variables:
 \describe{
 \item{ID_ENTITY}{PENDING}
 \item{ID_SITE}{PENDING}

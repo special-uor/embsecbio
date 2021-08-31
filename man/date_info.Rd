@@ -5,7 +5,7 @@
 \alias{date_info}
 \title{\code{date_info}}
 \format{
-A data frame with 916 rows and 11 variables:
+A data frame with 1008 rows and 11 variables:
 \describe{
 \item{ID_DATE_INFO}{PENDING}
 \item{ID_ENTITY}{PENDING}
